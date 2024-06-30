@@ -1,16 +1,6 @@
-# agri_guide_app
+AgriGuide App
+AgriGuide is a mobile application built using Flutter that provides agricultural information and guidance to users. This app helps farmers and agriculture enthusiasts access useful information right on their mobile devices.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Features
+Home Screen: Provides an overview of the app's functionalities.
+Details Screen: Displays detailed information about specific agricultural topics.
