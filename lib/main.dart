@@ -18,6 +18,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
+        '/notifications': (context) =>
+            NotificationScreen(), // Added route for Notifications
       },
     );
   }
@@ -27,6 +29,60 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('AgritechHub'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home, color: Color(0xFF708763)),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.task, color: Color(0xFF121712)),
+            label: 'Tasks',
+          ),
+          BottomNavigationBarItem(
+            icon: SvgPicture.asset(
+              'assets/field_icon.svg', // Path to your SVG icon
+              color: Color(0xFF708763),
+            ),
+            label: 'Fields',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person, color: Color(0xFF708763)),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.notifications, color: Color(0xFF708763)),
+            label: 'Notifications',
+          ),
+        ],
+        currentIndex: 0, // Assuming Home is selected by default
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, '/home');
+              break;
+            case 1:
+              Navigator.pushNamed(context, '/tasks');
+              break;
+            case 2:
+              Navigator.pushNamed(context, '/fields');
+              break;
+            case 3:
+              Navigator.pushNamed(context, '/profile');
+              break;
+            case 4:
+              Navigator.pushNamed(
+                  context, '/notifications'); // Navigate to Notifications
+              break;
+          }
+        },
+      ),
       body: Center(
         child: Container(
           alignment: Alignment.center,
@@ -346,6 +402,84 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                   ),
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// New NotificationScreen class
+class NotificationScreen extends StatelessWidget {
+  final List<Map<String, String>> notifications = [
+    {
+      'title': 'Payment Due',
+      'content':
+          'Your payment of \$2000 for the purchase of 2,000 bales of hay is due in 3 days.',
+    },
+    {
+      'title': 'New Task1',
+      'content':
+          'You have been assigned a new task. Task: Planting Corn on Field 1',
+    },
+    {
+      'title': 'New Task2',
+      'content':
+          'You have been assigned a new task. Task: Harvesting Wheat on Field 2',
+    },
+    {
+      'title': 'New Task3',
+      'content':
+          'You have been assigned a new task. Task: Watering Plants on Field 4',
+    },
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Notifications'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Notifications',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            // Notifications list
+            Expanded(
+              child: ListView.builder(
+                itemCount: notifications.length,
+                itemBuilder: (context, index) {
+                  return Card(
+                    margin: EdgeInsets.all(10),
+                    child: ListTile(
+                      leading:
+                          Icon(Icons.notifications, color: Color(0xFF80E51A)),
+                      title: Text(notifications[index]['title']!),
+                      subtitle: Text(notifications[index]['content']!),
+                      trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                    ),
+                  );
+                },
               ),
             ),
           ],
