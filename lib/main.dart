@@ -20,6 +20,11 @@ class MyApp extends StatelessWidget {
         '/login': (context) => LoginScreen(),
         '/notifications': (context) =>
             NotificationScreen(), // Added route for Notifications
+        '/weather': (context) => WeatherScreen(), // Added route for Weather
+        '/marketprices': (context) =>
+            MarketPriceScreen(), // Added route for Market Prices
+        '/cropproduction': (context) =>
+            CropProductionTechniquesScreen(), // Added route for Crop Production Techniques
       },
     );
   }
@@ -60,6 +65,18 @@ class HomeScreen extends StatelessWidget {
             icon: Icon(Icons.notifications, color: Color(0xFF708763)),
             label: 'Notifications',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.cloud, color: Color(0xFF708763)),
+            label: 'Weather',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.attach_money, color: Color(0xFF708763)),
+            label: 'Market Prices',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.info, color: Color(0xFF708763)),
+            label: 'Crop Techniques',
+          ),
         ],
         currentIndex: 0, // Assuming Home is selected by default
         onTap: (index) {
@@ -79,6 +96,17 @@ class HomeScreen extends StatelessWidget {
             case 4:
               Navigator.pushNamed(
                   context, '/notifications'); // Navigate to Notifications
+              break;
+            case 5:
+              Navigator.pushNamed(context, '/weather'); // Navigate to Weather
+              break;
+            case 6:
+              Navigator.pushNamed(
+                  context, '/marketprices'); // Navigate to Market Prices
+              break;
+            case 7:
+              Navigator.pushNamed(context,
+                  '/cropproduction'); // Navigate to Crop Production Techniques
               break;
           }
         },
@@ -570,6 +598,273 @@ class _ConsultationBookingPageState extends State<ConsultationBookingPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// New WeatherScreen class
+class WeatherScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Weather'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              decoration: InputDecoration(
+                labelText: 'Search City',
+                border: OutlineInputBorder(),
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              '7-Day Forecast',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            // Forecast details
+            Expanded(
+              child: ListView(
+                children: [
+                  ListTile(
+                    title: Text('Monday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Tuesday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Wednesday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Thursday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Friday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Saturday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                  ListTile(
+                    title: Text('Sunday'),
+                    subtitle: Text('13°C - 23°C'),
+                    trailing: Text('UV Index: 6'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// New MarketPriceScreen class
+class MarketPriceScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Market Prices'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(
+              'Current Fruit Prices',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 20),
+            // Fruit prices
+            Expanded(
+              child: ListView(
+                children: [
+                  ListTile(
+                    title: Text('Apples'),
+                    trailing: Text('\$3.00/kg'),
+                  ),
+                  ListTile(
+                    title: Text('Bananas'),
+                    trailing: Text('\$2.50/kg'),
+                  ),
+                  ListTile(
+                    title: Text('Oranges'),
+                    trailing: Text('\$4.00/kg'),
+                  ),
+                  ListTile(
+                    title: Text('Strawberries'),
+                    trailing: Text('\$5.00/kg'),
+                  ),
+                  ListTile(
+                    title: Text('Blueberries'),
+                    trailing: Text('\$6.00/kg'),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+// New CropProductionTechniquesScreen class
+class CropProductionTechniquesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Crop Production Techniques'),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
+        foregroundColor: Colors.black,
+      ),
+      body: Padding(
+        padding: EdgeInsets.all(15.0),
+        child: ListView(
+          children: [
+            Text(
+              'Soil Management',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Soil management is the foundation to successful farming. It involves maintaining proper soil structure, and managing nutrients and pH levels',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Water Management',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Proper water mangament can make a huge difference in crop production. This includes irrigation scheduling and water conservation.',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Sowing Rate',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'The sowing rate is the number of planted seed per acre. The optimum rate varies by crop species, variety, and environmental conditions.',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Pesticide Management',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 22,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w700,
+                height: 28 / 22,
+                fontFeatures: [FontFeature.enable('dlig')],
+              ),
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Pesticides are used to reduce crop damage from pests. Proper pesticide management includes selecting the right type and using the right time',
+              style: TextStyle(
+                color: Color(0xFF141C0D),
+                fontFamily: 'Manrope',
+                fontSize: 16,
+                fontStyle: FontStyle.normal,
+                fontWeight: FontWeight.w400,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
