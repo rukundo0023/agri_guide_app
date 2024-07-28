@@ -18,13 +18,10 @@ class MyApp extends StatelessWidget {
       routes: {
         '/register': (context) => RegisterScreen(),
         '/login': (context) => LoginScreen(),
-        '/notifications': (context) =>
-            NotificationScreen(), // Added route for Notifications
-        '/weather': (context) => WeatherScreen(), // Added route for Weather
-        '/marketprices': (context) =>
-            MarketPriceScreen(), // Added route for Market Prices
-        '/cropproduction': (context) =>
-            CropProductionTechniquesScreen(), // Added route for Crop Production Techniques
+        '/notifications': (context) => NotificationScreen(),
+        '/weather': (context) => WeatherScreen(),
+        '/marketprices': (context) => MarketPriceScreen(),
+        '/cropproduction': (context) => CropProductionTechniquesScreen(),
       },
     );
   }
@@ -78,7 +75,7 @@ class HomeScreen extends StatelessWidget {
             label: 'Crop Techniques',
           ),
         ],
-        currentIndex: 0, // Assuming Home is selected by default
+        currentIndex: 0,
         onTap: (index) {
           switch (index) {
             case 0:
@@ -94,19 +91,16 @@ class HomeScreen extends StatelessWidget {
               Navigator.pushNamed(context, '/profile');
               break;
             case 4:
-              Navigator.pushNamed(
-                  context, '/notifications'); // Navigate to Notifications
+              Navigator.pushNamed(context, '/notifications');
               break;
             case 5:
-              Navigator.pushNamed(context, '/weather'); // Navigate to Weather
+              Navigator.pushNamed(context, '/weather');
               break;
             case 6:
-              Navigator.pushNamed(
-                  context, '/marketprices'); // Navigate to Market Prices
+              Navigator.pushNamed(context, '/marketprices');
               break;
             case 7:
-              Navigator.pushNamed(context,
-                  '/cropproduction'); // Navigate to Crop Production Techniques
+              Navigator.pushNamed(context, '/cropproduction');
               break;
           }
         },
@@ -123,7 +117,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/new_image.png',
+                'assets/new_image.png', // Path to your local image
                 width: 200,
                 height: 200,
               ),
