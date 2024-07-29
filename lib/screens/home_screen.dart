@@ -117,11 +117,16 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               // Display local image from assets
-              Image.asset(
-                'assets/new_image.png', // Path to your local image
-                width: 200,
-                height: 200,
-                fit: BoxFit.cover, // Adjust the fit as needed
+              Container(
+                width: 347,
+                height: 246,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/new_image.png'),
+                    fit: BoxFit.cover,
+                  ),
+                ),
               ),
               SizedBox(height: 20),
               Text(
@@ -180,5 +185,49 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+// Placeholder classes for the routes
+class RegisterScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Register Screen')));
+  }
+}
+
+class LoginScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Login Screen')));
+  }
+}
+
+class NotificationScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Notification Screen')));
+  }
+}
+
+class WeatherScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Weather Screen')));
+  }
+}
+
+class MarketPriceScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(body: Center(child: Text('Market Price Screen')));
+  }
+}
+
+class CropProductionTechniquesScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Center(child: Text('Crop Production Techniques Screen')));
   }
 }

@@ -17,7 +17,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:
-  uses-material-design: true
-  assets:
-    - assets/new_image.png # Ensure this path matches the location of your PNG file
+# Ensure this path matches the location of your PNG file
+assets:
+  - assets/images/new_image.png
