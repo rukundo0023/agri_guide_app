@@ -18,5 +18,6 @@ dev_dependencies:
     sdk: flutter
 
 # Ensure this path matches the location of your PNG file
-assets:
-  - assets/images/new_image.png
+flutter:
+  assets:
+    - assets/images/new_image.png

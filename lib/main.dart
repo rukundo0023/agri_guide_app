@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // Import the flutter_svg package
+import 'package:flutter_svg/flutter_svg.dart';
 
 void main() {
   runApp(MyApp());
@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'AgritechHub',
       theme: ThemeData(
         primarySwatch: Colors.green,
@@ -22,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/weather': (context) => WeatherScreen(),
         '/marketprices': (context) => MarketPriceScreen(),
         '/cropproduction': (context) => CropProductionTechniquesScreen(),
+        '/booking': (context) => ConsultationBookingPage(),
       },
     );
   }
@@ -48,11 +50,8 @@ class HomeScreen extends StatelessWidget {
             label: 'Tasks',
           ),
           BottomNavigationBarItem(
-            icon: SvgPicture.asset(
-              'assets/field_icon.svg', // Path to your SVG icon
-              color: Color(0xFF708763),
-            ),
-            label: 'Fields',
+            icon: Icon(Icons.home, color: Color(0xFF708763)),
+            label: 'booking',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person, color: Color(0xFF708763)),
@@ -85,7 +84,7 @@ class HomeScreen extends StatelessWidget {
               Navigator.pushNamed(context, '/tasks');
               break;
             case 2:
-              Navigator.pushNamed(context, '/fields');
+              Navigator.pushNamed(context, '/booking');
               break;
             case 3:
               Navigator.pushNamed(context, '/profile');
@@ -117,7 +116,7 @@ class HomeScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/new_image.png', // Path to your local image
+                'assets/images/new_image.png', // Path to your local image
                 width: 200,
                 height: 200,
               ),
@@ -512,10 +511,6 @@ class NotificationScreen extends StatelessWidget {
 }
 
 class ConsultationBookingPage extends StatefulWidget {
-  final Color customGreen;
-
-  ConsultationBookingPage({required this.customGreen});
-
   @override
   _ConsultationBookingPageState createState() =>
       _ConsultationBookingPageState();
@@ -542,56 +537,59 @@ class _ConsultationBookingPageState extends State<ConsultationBookingPage> {
           },
         ),
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: CalendarDatePicker(
-              initialDate: _selectedDate,
-              firstDate: DateTime(2020),
-              lastDate: DateTime(2100),
-              onDateChanged: _onDateChanged,
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                ListTile(
-                  title: Text('Dec 15, Wednesday'),
-                  subtitle: Text('9:00 AM - 10:00 AM'),
+      body: Expanded(
+        child: Container(
+          child: Column(
+            children: [
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: CalendarDatePicker(
+                  initialDate: _selectedDate,
+                  firstDate: DateTime(2020),
+                  lastDate: DateTime(2100),
+                  onDateChanged: _onDateChanged,
                 ),
-                ListTile(
-                  title: Text('Dec 16, Thursday'),
-                  subtitle: Text('11:00 AM - 12:00 PM'),
-                ),
-                ListTile(
-                  title: Text('Dec 17, Friday'),
-                  subtitle: Text('3:00 PM - 4:00 PM'),
-                ),
-              ],
-            ),
-          ),
-          Spacer(),
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Handle confirmation action
-              },
-              style: ElevatedButton.styleFrom(
-                backgroundColor:
-                    widget.customGreen, // Updated to backgroundColor
-                padding: EdgeInsets.symmetric(vertical: 16.0),
-                textStyle: TextStyle(fontSize: 18),
               ),
-              child: Center(
-                child: Text('Confirm'),
+              Padding(
+                padding: EdgeInsets.all(0.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    ListTile(
+                      title: Text('Dec 15, Wednesday'),
+                      subtitle: Text('9:00 AM - 10:00 AM'),
+                    ),
+                    ListTile(
+                      title: Text('Dec 16, Thursday'),
+                      subtitle: Text('11:00 AM - 12:00 PM'),
+                    ),
+                    ListTile(
+                      title: Text('Dec 17, Friday'),
+                      subtitle: Text('3:00 PM - 4:00 PM'),
+                    ),
+                  ],
+                ),
               ),
-            ),
+              SizedBox(height: 10),
+              Padding(
+                padding: EdgeInsets.all(6.0),
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Handle confirmation action
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.green, // Updated to backgroundColor
+                    padding: EdgeInsets.symmetric(vertical: 16.0),
+                    textStyle: TextStyle(fontSize: 18),
+                  ),
+                  child: Center(
+                    child: Text('Confirm'),
+                  ),
+                ),
+              ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }
