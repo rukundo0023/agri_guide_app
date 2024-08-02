@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart'; // Import the flutter_svg package
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
   @override
@@ -8,6 +9,8 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
@@ -45,6 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelText: 'Email ID',
                   border: OutlineInputBorder(),
                 ),
+                controller: email,
               ),
             ),
             Padding(
@@ -63,21 +67,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/eye_icon.svg',
-                      width: 24,
-                      height: 24,
-                      color: Color(0xFF73964F),
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  ),
+                  // suffixIcon: IconButton(
+                  //   icon: SvgPicture.asset(
+                  //     'assets/eye_icon.svg',
+                  //     width: 24,
+                  //     height: 24,
+                  //     color: Color(0xFF73964F),
+                  //   ),
+                  //   onPressed: _togglePasswordVisibility,
+                  // ),
                 ),
+                controller: password,
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                // Define action for the button
+              onPressed: () async{
+                print("clicked");
+                try {
+                  UserCredential? userCredentials = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
+                  email.clear();
+                  password.clear();
+                }on FirebaseAuthException catch (e) {
+                  print(e.message);
+                }
               },
               child: Text(
                 'Register',

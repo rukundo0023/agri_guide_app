@@ -12,6 +12,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.0.0  # Ensure this line is included
+  firebase_core: 
+  firebase_auth: 
 
 dev_dependencies:
   flutter_test:

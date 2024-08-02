@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "198001552143",
+    "project_id": "agriguide-2358a",
+    "storage_bucket": "agriguide-2358a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198001552143:android:6b8272fd3d15f676cbec7a",
+        "android_client_info": {
+          "package_name": "com.example.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDc4Dc9NVdGr_scD7GvIic1Ep-Z0XzZMAU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

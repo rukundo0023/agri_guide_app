@@ -1,7 +1,14 @@
+import 'package:agri_guide_app/firebase_options.dart';
+import 'package:agri_guide_app/screens/displayMessage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(MyApp());
 }
 
@@ -187,11 +194,39 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   bool _obscureText = true;
+  final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
 
   void _togglePasswordVisibility() {
     setState(() {
       _obscureText = !_obscureText;
     });
+  }
+
+  void registerUser() async {
+    // Show a loader
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+
+    // Create the actual user
+    try {
+      UserCredential? userCredentials = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: email.text, password: password.text);
+      email.clear();
+      password.clear();
+      FirebaseAuth.instance.signOut();
+      Navigator.pop(context);
+      displayMessageToUser("Registration Successfull", context);
+      email.clear();
+      password.clear();
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      displayMessageToUser(e.code, context);
+    }
   }
 
   @override
@@ -224,6 +259,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   labelText: 'Email ID',
                   border: OutlineInputBorder(),
                 ),
+                controller: email,
               ),
             ),
             Padding(
@@ -242,21 +278,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/eye_icon.svg',
-                      width: 24,
-                      height: 24,
-                      color: Color(0xFF73964F),
-                    ),
-                    onPressed: _togglePasswordVisibility,
-                  ),
+                  // suffixIcon: IconButton(
+                  //   icon: SvgPicture.asset(
+                  //     'assets/eye_icon.svg',
+                  //     width: 24,
+                  //     height: 24,
+                  //     color: Color(0xFF73964F),
+                  //   ),
+                  //   onPressed: _togglePasswordVisibility,
+                  // ),
                 ),
+                controller: password,
               ),
             ),
             ElevatedButton(
-              onPressed: () {
-                // Define action for the button
+              onPressed: ()  {
+                registerUser();
               },
               child: Text(
                 'Register',
@@ -296,7 +333,39 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+    final TextEditingController email = TextEditingController();
+  final TextEditingController password = TextEditingController();
+
+    void Login() async {
+    // Show a loader
+    showDialog(
+        context: context,
+        builder: (context) => const Center(
+              child: CircularProgressIndicator(),
+            ));
+
+    // Create the actual user
+    try {
+      UserCredential? userCredentials = await FirebaseAuth.instance
+          .signInWithEmailAndPassword(
+              email: email.text, password: password.text);
+      email.clear();
+      password.clear();
+      Navigator.pop(context);
+      displayMessageToUser("Login Successfull", context);
+      email.clear();
+      password.clear();
+    } on FirebaseAuthException catch (e) {
+      Navigator.pop(context);
+      displayMessageToUser(e.code, context);
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -336,6 +405,7 @@ class LoginScreen extends StatelessWidget {
                   labelText: 'Email ID',
                   border: OutlineInputBorder(),
                 ),
+                controller: email,
               ),
             ),
             // Password Field
@@ -346,24 +416,25 @@ class LoginScreen extends StatelessWidget {
                 decoration: InputDecoration(
                   labelText: 'Password',
                   border: OutlineInputBorder(),
-                  suffixIcon: IconButton(
-                    icon: SvgPicture.asset(
-                      'assets/eye_icon.svg',
-                      width: 24,
-                      height: 24,
-                      color: Color(0xFF73964F),
-                    ),
-                    onPressed: () {
-                      // Toggle password visibility
-                    },
-                  ),
+                  // suffixIcon: IconButton(
+                  //   icon: SvgPicture.asset(
+                  //     'assets/eye_icon.svg',
+                  //     width: 24,
+                  //     height: 24,
+                  //     color: Color(0xFF73964F),
+                  //   ),
+                  //   onPressed: () {
+                  //     // Toggle password visibility
+                  //   },
+                  // ),
                 ),
+                controller: password,
               ),
             ),
             // Login Button
             ElevatedButton(
               onPressed: () {
-                // Define action for the button
+                Login();
               },
               child: Text(
                 'Login',
