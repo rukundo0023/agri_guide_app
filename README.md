@@ -4,7 +4,7 @@ AgriGuide is a mobile application built using Flutter that provides agricultural
 
 **Features**
 1. Home Screen
-Overview: The Home Screen provides an overview of the app's core functionalities. It welcomes users to AgritechHub and guides them to other sections of the app.
+Overview: The Home Screen provides an overview of the app's cone functionalities. It welcomes users to AgritechHub and guides them to other sections of the app.
 Content: Includes a welcome message, an introduction to the platform, and a "Get Started" button that directs users to the Login or Registration page.
 2. Booking Page
 Overview: The Booking Page allows users to schedule consultations with agricultural experts.
