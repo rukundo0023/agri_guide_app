@@ -27,5 +27,23 @@ New User Link: Offers a link to the Registration Page for new users.
 5. Notifications Page
 Overview: The Notifications Page keeps users informed about important updates and tasks.
 Features:
-Notification List: Displays a list of notifications, including payment due reminders and task assignments.
+6. Notification List: Displays a list of notifications, including payment due reminders and task assignments.
 Details: Each notification includes a title and content detailing the update or task.
+7. Booking for Consultation : Allows users to schedule consultations with agricultural experts.
+   a) Date Selection from calendar widget.
+   b) Available Time Slots.
+   c) Confirmation Button for booking.
+
+**Testing**
+1) Compatibility and Responsiveness: Tested on various devices and screen sizes.
+2) Widget and Unit Testing: Ensured functionality across different scenarios.
+
+**APK File**
+Distribute APK via email, cloud storage, or third-party app stores.
+here is the link of APK file :
+
+**DEMO video**
+here is the link : 
+
+
+
