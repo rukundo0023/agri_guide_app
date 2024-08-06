@@ -43,7 +43,7 @@ Distribute APK via email, cloud storage, or third-party app stores.
 here is the link of APK file :
 
 **DEMO video**
-here is the link : 
+here is the link : https://gemoo.com/tools/upload-video/share/679349459348193280?codeId=DGYR1BQdYOJkE&card=679349455795630080&origin=videolinkgenerator
 
 
 
