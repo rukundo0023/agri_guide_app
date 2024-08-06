@@ -45,5 +45,7 @@ here is the link of APK file :
 **DEMO video**
 here is the link : https://gemoo.com/tools/upload-video/share/679349459348193280?codeId=DGYR1BQdYOJkE&card=679349455795630080&origin=videolinkgenerator
 
+**slides** here is the link of the slides "https://docs.google.com/presentation/d/14ow7rn2_BuOs_nH1ROSlh-zs7SmjssbU0b8avyf3yg4/edit#slide=id.g21c095d798f_0_30"
+
 
 
