@@ -38,6 +38,13 @@ Details: Each notification includes a title and content detailing the update or 
 1) Compatibility and Responsiveness: Tested on various devices and screen sizes.
 2) Widget and Unit Testing: Ensured functionality across different scenarios.
 
+**Business Model**
+1) Freemium approach
+2) Subscription for premium features
+3) In-app purchases
+4) Ads from local businesses
+
+
 **APK File**
 Distribute APK via email, cloud storage, or third-party app stores.
 here is the link of APK file :
@@ -46,6 +53,7 @@ here is the link of APK file :
 here is the link : https://gemoo.com/tools/upload-video/share/679349459348193280?codeId=DGYR1BQdYOJkE&card=679349455795630080&origin=videolinkgenerator
 
 **slides** here is the link of the slides "https://docs.google.com/presentation/d/14ow7rn2_BuOs_nH1ROSlh-zs7SmjssbU0b8avyf3yg4/edit#slide=id.g21c095d798f_0_30"
+**slides presentation video** https://gemoo.com/tools/upload-video/share/679362215581470720?codeId=MpmwLzGxnwoJJ&card=679362211953397760&origin=videolinkgenerator
 
 **Final Millstone report**  link :https://docs.google.com/document/d/1Uem6zL7sbkr62Ibp4MZ9b2K56SS2kLkPTlSeY2B-xSY/edit
 
