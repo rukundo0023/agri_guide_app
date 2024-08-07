@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart'; // Import the flutter_svg package
 import 'package:firebase_auth/firebase_auth.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -8,14 +7,35 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _confirmPasswordController = TextEditingController();
   bool _obscureText = true;
-  final TextEditingController email = TextEditingController();
-  final TextEditingController password = TextEditingController();
 
-  void _togglePasswordVisibility() {
-    setState(() {
-      _obscureText = !_obscureText;
-    });
+  void _register() async {
+    if (_passwordController.text.trim() !=
+        _confirmPasswordController.text.trim()) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Passwords do not match!')),
+      );
+      return;
+    }
+
+    try {
+      final newUser =
+          await FirebaseAuth.instance.createUserWithEmailAndPassword(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+      );
+      if (newUser.user != null) {
+        Navigator.popUntil(context, ModalRoute.withName('/login'));
+      }
+    } catch (e) {
+      print(e);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Registration failed. Please try again.')),
+      );
+    }
   }
 
   @override
@@ -23,104 +43,76 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Register'),
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
       ),
       body: Padding(
-        padding: EdgeInsets.all(15.0),
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Padding(
-              padding: EdgeInsets.only(bottom: 15.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Full Name',
-                  border: OutlineInputBorder(),
+            TextField(
+              controller: _emailController,
+              keyboardType: TextInputType.emailAddress,
+              decoration: InputDecoration(
+                labelText: 'Email',
+                fillColor:
+                    Colors.orange[100], // Background color of the text field
+                filled: true, // Enable background color
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
                 ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 15.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Email ID',
-                  border: OutlineInputBorder(),
+            SizedBox(height: 16),
+            TextField(
+              controller: _passwordController,
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                fillColor:
+                    Colors.orange[100], // Background color of the text field
+                filled: true, // Enable background color
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
                 ),
-                controller: email,
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
+                ),
               ),
             ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 15.0),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Phone Number',
-                  border: OutlineInputBorder(),
+            SizedBox(height: 16),
+            TextField(
+              controller: _confirmPasswordController,
+              obscureText: _obscureText,
+              decoration: InputDecoration(
+                labelText: 'Confirm Password',
+                fillColor:
+                    Colors.orange[100], // Background color of the text field
+                filled: true, // Enable background color
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
                 ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.only(bottom: 15.0),
-              child: TextField(
-                obscureText: _obscureText,
-                decoration: InputDecoration(
-                  labelText: 'Password',
-                  border: OutlineInputBorder(),
-                  // suffixIcon: IconButton(
-                  //   icon: SvgPicture.asset(
-                  //     'assets/eye_icon.svg',
-                  //     width: 24,
-                  //     height: 24,
-                  //     color: Color(0xFF73964F),
-                  //   ),
-                  //   onPressed: _togglePasswordVisibility,
-                  // ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: BorderSide(color: Colors.orange, width: 2.0),
                 ),
-                controller: password,
-              ),
-            ),
-            ElevatedButton(
-              onPressed: () async{
-                print("clicked");
-                try {
-                  UserCredential? userCredentials = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email.text, password: password.text);
-                  email.clear();
-                  password.clear();
-                }on FirebaseAuthException catch (e) {
-                  print(e.message);
-                }
-              },
-              child: Text(
-                'Register',
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Color(0xFF80E51A),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                minimumSize: Size(84, 40),
               ),
             ),
             SizedBox(height: 20),
-            Align(
-              alignment: Alignment.center,
-              child: Text(
-                'Already have an account? Log in',
-                style: TextStyle(
-                  color: Color(0xFF73964F),
-                  fontFamily: 'Manrope',
-                  fontSize: 14,
-                  fontStyle: FontStyle.normal,
-                  fontWeight: FontWeight.w400,
-                  height: 21 / 14,
-                  fontFeatures: [FontFeature.enable('dlig')],
-                ),
-                textAlign: TextAlign.center,
+            ElevatedButton(
+              onPressed: _register,
+              style: ElevatedButton.styleFrom(
+                backgroundColor:
+                    Colors.orange, // Background color of the button
               ),
+              child: Text('Register', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),

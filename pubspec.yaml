@@ -11,15 +11,29 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_svg: ^1.0.0  # Ensure this line is included
-  firebase_core: 
-  firebase_auth: 
+  flutter_svg: ^1.0.0
+  firebase_core: ^2.3.0
+  firebase_auth: ^4.4.0
+  cloud_firestore: ^4.17.5
+  provider: ^6.1.2
+  cloud_functions: ^4.0.3
+  firebase_storage: ^11.0.0
+  shared_preferences: ^2.0.13
+
+  
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
-# Ensure this path matches the location of your PNG file
 flutter:
   assets:
     - assets/images/new_image.png
+    - assets/images/home_icon.png
+    - assets/images/booking_icon.png
+    - assets/images/cropproduction_icon.png
+    - assets/images/marketprice_icon.png
+    - assets/images/notification_icon.png
+    - assets/images/weather_icon.png
+    - assets/images/fields_icon.png
+    - assets/images/profile_icon.png
