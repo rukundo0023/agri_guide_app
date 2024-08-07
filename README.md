@@ -47,7 +47,7 @@ Details: Each notification includes a title and content detailing the update or 
 
 **APK File**
 Distribute APK via email, cloud storage, or third-party app stores.
-here is the link of APK file :
+here is the link of APK file : https://drive.google.com/file/d/1eLovQbbYDvP4Wl-LiGMHNQYwEKdEhKec/view?usp=sharing
 
 **DEMO video**
 here is the link : https://gemoo.com/tools/upload-video/share/679349459348193280?codeId=DGYR1BQdYOJkE&card=679349455795630080&origin=videolinkgenerator
