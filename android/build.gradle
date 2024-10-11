@@ -1,15 +1,25 @@
+buildscript {
+    repositories {
+        google()  // Ensure this line is present
+        mavenCentral()  // Ensure this line is also present
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:8.0.0'  // Use the version appropriate for your project
+        classpath 'com.google.gms:google-services:4.3.14'  // Ensure this line is present
+    }
+}
+
 allprojects {
     repositories {
-        google()
-        mavenCentral()
+        google()  // Ensure this line is present
+        mavenCentral()  // Ensure this line is also present
     }
 }
 
 rootProject.buildDir = "../build"
+
 subprojects {
     project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
     project.evaluationDependsOn(":app")
 }
 
