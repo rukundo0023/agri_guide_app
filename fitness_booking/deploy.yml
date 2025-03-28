@@ -1,0 +1,8 @@
+- hosts: servers
+  become: true
+  tasks:
+    - name: Pull latest Docker images
+      shell: docker-compose pull
+
+    - name: Run Docker containers
+      shell: docker-compose up -d
